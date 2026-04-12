@@ -10,13 +10,15 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sportflow/fxml/main.fxml"));
+        // Chargement de la page de connexion au démarrage
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sportflow/fxml/login.fxml"));
         Parent root = loader.load();
         
         Scene scene = new Scene(root);
         
-        primaryStage.setTitle("SportFlow - Suivi de Performance");
+        primaryStage.setTitle("SportFlow - Connexion");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false); // La fenêtre de login est fixe
         primaryStage.show();
     }
 
