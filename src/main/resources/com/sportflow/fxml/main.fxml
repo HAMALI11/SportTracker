@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+
+<HBox prefHeight="720.0" prefWidth="1280.0"
+      stylesheets="@../css/style.css"
+      xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.sportflow.controller.DashboardController">
+
+    <!-- Sidebar Navigation -->
+    <VBox prefWidth="250.0" styleClass="sidebar" spacing="8.0">
+        <Label styleClass="sidebar-title" text="⚡ SPORTFLOW" />
+        <Button prefWidth="210.0" styleClass="nav-button, nav-button-active" text="🏠  Dashboard" />
+        <Button prefWidth="210.0" styleClass="nav-button" text="🏃  Activités" />
+        <Button prefWidth="210.0" styleClass="nav-button" text="🥗  Nutrition" />
+        <Button prefWidth="210.0" styleClass="nav-button" text="🎯  Objectifs" />
+        <Button prefWidth="210.0" styleClass="nav-button" text="👥  Communauté" />
+        <Region VBox.vgrow="ALWAYS" />
+        <Button prefWidth="210.0" styleClass="nav-button" text="⚙  Paramètres" />
+    </VBox>
+
+    <!-- Main Dashboard Content -->
+    <VBox styleClass="dashboard-pane" HBox.hgrow="ALWAYS" spacing="20.0">
+
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT">
+            <VBox>
+                <Label styleClass="header-title" text="Bonjour ! Bienvenue 👋" />
+                <Label style="-fx-text-fill: #A0A0A0; -fx-font-size: 14px;" text="Voici vos progrès du jour" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button styleClass="primary-button" text="+ Nouvelle Activité"
+                    onAction="#handleNewActivity" />
+        </HBox>
+
+        <!-- KPI Cards Row -->
+        <HBox spacing="20.0">
+
+            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="8.0">
+                <Label styleClass="card-title" text="🔥  CALORIES BRÛLÉES" />
+                <Label styleClass="card-value" fx:id="caloriesLabel" text="1 240 kcal" />
+                <Label styleClass="card-subtitle" text="↑ +12% par rapport à hier" />
+            </VBox>
+
+            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="8.0">
+                <Label styleClass="card-title" text="📍  DISTANCE RÉALISÉE" />
+                <Label styleClass="card-value" fx:id="distanceLabel" text="12,4 km" />
+                <Label styleClass="card-subtitle" text="↑ +5 km par rapport à hier" />
+            </VBox>
+
+            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="8.0">
+                <Label styleClass="card-title" text="⏱  TEMPS D'ACTIVITÉ" />
+                <Label styleClass="card-value" fx:id="timeLabel" text="2h 15min" />
+                <Label styleClass="card-subtitle" text="Objectif journalier: 3h" />
+            </VBox>
+
+        </HBox>
+
+        <!-- Charts + Nutrition Row -->
+        <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+
+            <!-- Performance Chart -->
+            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="10.0">
+                <Label styleClass="card-title" text="📈  PERFORMANCE DE LA SEMAINE" />
+                <LineChart fx:id="performanceChart" VBox.vgrow="ALWAYS"
+                           animated="true"
+                           legendVisible="true"
+                           verticalGridLinesVisible="false">
+                    <xAxis><CategoryAxis label="Jour" /></xAxis>
+                    <yAxis><NumberAxis label="Vitesse (km/h)" /></yAxis>
+                </LineChart>
+            </VBox>
+
+            <!-- Nutrition Summary -->
+            <VBox prefWidth="330.0" styleClass="card" spacing="12.0">
+                <Label styleClass="card-title" text="🥗  NUTRITION DU JOUR" />
+
+                <Label style="-fx-text-fill: white; -fx-font-size: 13px;" text="Protéines" />
+                <ProgressBar prefWidth="290.0" progress="0.66" style="-fx-accent: #00A3FF;" />
+                <Label style="-fx-text-fill: #A0A0A0; -fx-font-size: 12px;" text="80g / 120g" />
+
+                <Label style="-fx-text-fill: white; -fx-font-size: 13px;" text="Glucides" />
+                <ProgressBar prefWidth="290.0" progress="0.75" style="-fx-accent: #00FF94;" />
+                <Label style="-fx-text-fill: #A0A0A0; -fx-font-size: 12px;" text="150g / 200g" />
+
+                <Label style="-fx-text-fill: white; -fx-font-size: 13px;" text="Lipides" />
+                <ProgressBar prefWidth="290.0" progress="0.69" style="-fx-accent: #FFBD00;" />
+                <Label style="-fx-text-fill: #A0A0A0; -fx-font-size: 12px;" text="45g / 65g" />
+
+                <Region VBox.vgrow="ALWAYS" />
+                <Label style="-fx-text-fill: #A0A0A0; -fx-font-size: 12px;" text="Total: 1 850 / 2 200 kcal" />
+            </VBox>
+
+        </HBox>
+
+    </VBox>
+
+</HBox>
