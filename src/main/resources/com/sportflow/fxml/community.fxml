@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Circle?>
+
+<ScrollPane fx:id="rootPane" fitToWidth="true" styleClass="dashboard-pane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sportflow.controller.CommunityController">
+   <content>
+      <VBox spacing="30.0" style="-fx-background-color: transparent;">
+         <children>
+            <!-- Header -->
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Button onAction="#handleBackToDashboard" style="-fx-background-color: transparent; -fx-text-fill: #A0A0A0; -fx-cursor: hand; -fx-font-size: 14px;" text="← Retour" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <VBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Label styleClass="header-title" text="👥 Communauté &amp; Conseils" />
+                        <Label style="-fx-text-fill: #A0A0A0;" text="Apprenez, partagez et restez motivé avec SportFlow." />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+
+            <!-- Daily Tips Section -->
+            <VBox spacing="15.0">
+               <children>
+                  <Label styleClass="card-title" text="💡 CONSEILS DU JOUR" />
+                  <HBox spacing="15.0">
+                     <children>
+                        <VBox spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label style="-fx-text-fill: #00A3FF; -fx-font-weight: bold;" text="Hydratation" />
+                              <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Buvez au moins 500ml d'eau 30 minutes avant votre séance pour optimiser vos performances." wrapText="true" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label style="-fx-text-fill: #00FF94; -fx-font-weight: bold;" text="Récupération" />
+                              <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Le sommeil est votre meilleur allié. 7 à 9 heures par nuit permettent aux muscles de se reconstruire." wrapText="true" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label style="-fx-text-fill: #FFBD00; -fx-font-weight: bold;" text="Régularité" />
+                              <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Il vaut mieux 3 séances de 20 minutes qu'une seule de 2 heures une fois par mois." wrapText="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <!-- General Sport Info -->
+            <VBox spacing="15.0">
+               <children>
+                  <Label styleClass="card-title" text="📚 LE SAVIEZ-VOUS ?" />
+                  <GridPane hgap="20.0" vgap="20.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <VBox spacing="10.0" styleClass="card">
+                           <children>
+                              <Label style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" text="Les Endorphines" />
+                              <Label style="-fx-text-fill: #A0A0A0; -fx-font-size: 14px;" text="Le sport libère des endorphines, les 'hormones du bonheur', qui réduisent le stress et l'anxiété de manière naturelle." wrapText="true" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="10.0" styleClass="card" GridPane.columnIndex="1">
+                           <children>
+                              <Label style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" text="Cœur et Longévité" />
+                              <Label style="-fx-text-fill: #A0A0A0; -fx-font-size: 14px;" text="Une activité cardiovasculaire régulière peut augmenter votre espérance de vie de 3 à 5 ans en renforçant votre muscle cardiaque." wrapText="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+
+            <!-- Encouragement Section -->
+            <VBox alignment="CENTER" spacing="20.0" styleClass="card" style="-fx-background-color: linear-gradient(to right, #00A3FF, #00FF94); -fx-opacity: 0.9;">
+               <children>
+                  <Label style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;" text="&quot;Peu importe la lenteur à laquelle vous progressez, vous êtes toujours devant ceux qui n'essaient pas.&quot;" textAlignment="CENTER" wrapText="true" />
+                  <Button style="-fx-background-color: white; -fx-text-fill: #00A3FF; -fx-font-weight: bold; -fx-padding: 10 30; -fx-background-radius: 20;" text="RESTER MOTIVÉ" />
+               </children>
+               <padding>
+                  <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+      </VBox>
+   </content>
+</ScrollPane>

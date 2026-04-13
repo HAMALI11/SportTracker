@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox fx:id="rootPane" prefHeight="720.0" prefWidth="1100.0" spacing="20.0" styleClass="dashboard-pane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sportflow.controller.ActivitiesProgramController">
+   <children>
+      <!-- Header -->
+      <HBox alignment="CENTER_LEFT">
+         <children>
+            <Button onAction="#handleBackToDashboard" style="-fx-background-color: transparent; -fx-text-fill: #A0A0A0; -fx-cursor: hand; -fx-font-size: 14px;" text="← Retour au Tableau de Bord" />
+            <Region HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER_RIGHT">
+               <children>
+                  <Label styleClass="header-title" text="⚡ Coach IA : Programme d'Entraînement" />
+                  <Label fx:id="profileSubtitle" style="-fx-text-fill: #00A3FF;" text="Planification optimisée pour votre morphologie." />
+               </children>
+            </VBox>
+         </children>
+         <padding><Insets bottom="10.0" /></padding>
+      </HBox>
+
+      <!-- Main Coaching Area -->
+      <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox spacing="30.0">
+               <children>
+                  <!-- Summary Card -->
+                  <HBox spacing="20.0" styleClass="card" style="-fx-background-color: #1A1A1A;">
+                     <children>
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label style="-fx-text-fill: #00A3FF; -fx-font-weight: bold; -fx-font-size: 18px;" text="🤖 ANALYSE DE L'IA SPORTFLOW" />
+                              <Label fx:id="aiAnalysisLabel" style="-fx-text-fill: white; -fx-font-size: 14px;" text="Vérification de vos données biométriques..." wrapText="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding><Insets bottom="20.0" left="20.0" right="20.0" top="20.0" /></padding>
+                  </HBox>
+
+                  <!-- Workout Routine (3 Main Sessions) -->
+                  <VBox spacing="15.0">
+                     <children>
+                        <Label styleClass="card-title" text="📅 VOTRE ROUTINE HEBDOMADAIRE CONSEILLÉE" />
+                        <HBox spacing="15.0">
+                           <children>
+                              <!-- Session 1 -->
+                              <VBox spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label style="-fx-text-fill: #00FF94; -fx-font-weight: bold;" text="SÉANCE 1 : FONDATIONS" />
+                                    <Label fx:id="session1Title" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" text="..." />
+                                    <Label fx:id="session1Desc" style="-fx-text-fill: #A0A0A0;" text="..." wrapText="true" />
+                                    <Separator style="-fx-opacity: 0.1;" />
+                                    <Label style="-fx-text-fill: #00FF94;" text="Exercices Clés :" />
+                                    <Label fx:id="session1Exercises" style="-fx-text-fill: white;" text="..." wrapText="true" />
+                                 </children>
+                              </VBox>
+                              <!-- Session 2 -->
+                              <VBox spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label style="-fx-text-fill: #FFBD00; -fx-font-weight: bold;" text="SÉANCE 2 : DÉVELOPPEMENT" />
+                                    <Label fx:id="session2Title" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" text="..." />
+                                    <Label fx:id="session2Desc" style="-fx-text-fill: #A0A0A0;" text="..." wrapText="true" />
+                                    <Separator style="-fx-opacity: 0.1;" />
+                                    <Label style="-fx-text-fill: #FFBD00;" text="Exercices Clés :" />
+                                    <Label fx:id="session2Exercises" style="-fx-text-fill: white;" text="..." wrapText="true" />
+                                 </children>
+                              </VBox>
+                              <!-- Session 3 -->
+                              <VBox spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label style="-fx-text-fill: #FF4B2B; -fx-font-weight: bold;" text="SÉANCE 3 : PERFORMANCE" />
+                                    <Label fx:id="session3Title" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" text="..." />
+                                    <Label fx:id="session3Desc" style="-fx-text-fill: #A0A0A0;" text="..." wrapText="true" />
+                                    <Separator style="-fx-opacity: 0.1;" />
+                                    <Label style="-fx-text-fill: #FF4B2B;" text="Exercices Clés :" />
+                                    <Label fx:id="session3Exercises" style="-fx-text-fill: white;" text="..." wrapText="true" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+
+                  <!-- Alternative Exercises Section -->
+                  <VBox spacing="15.0" styleClass="card">
+                     <children>
+                        <Label styleClass="card-title" text="🔄 VARIANTES ET OPTIONS (POUR CHANGER DE MENU)" />
+                        <HBox spacing="20.0">
+                           <children>
+                              <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label style="-fx-text-fill: #00A3FF; -fx-font-weight: bold;" text="Option Cardio Alternative" />
+                                    <Label fx:id="altCardioLabel" style="-fx-text-fill: #A0A0A0;" text="..." wrapText="true" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label style="-fx-text-fill: #00A3FF; -fx-font-weight: bold;" text="Option Force Alternative" />
+                                    <Label fx:id="altStrengthLabel" style="-fx-text-fill: #A0A0A0;" text="..." wrapText="true" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+
+               </children>
+               <padding><Insets bottom="20.0" top="10.0" /></padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+</VBox>

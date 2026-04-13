@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+
+<VBox fx:id="rootPane" prefHeight="600.0" prefWidth="1000.0" spacing="20.0" styleClass="dashboard-pane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sportflow.controller.ObjectifsController">
+   <children>
+      <HBox alignment="CENTER_LEFT">
+         <children>
+            <Button onAction="#handleBackToDashboard" style="-fx-background-color: transparent; -fx-text-fill: #A0A0A0; -fx-cursor: hand; -fx-font-size: 14px;" text="← Retour" />
+            <Region HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER_RIGHT">
+               <children>
+                  <Label styleClass="header-title" text="🎯 Mes Objectifs" />
+                  <Label style="-fx-text-fill: #A0A0A0;" text="Suivez vos défis et votre progression personnelle." />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" />
+         </padding>
+      </HBox>
+      
+      <HBox spacing="20.0">
+         <children>
+            <VBox spacing="8.0" styleClass="card" HBox.hgrow="ALWAYS">
+               <Label styleClass="card-title" text="OBJECTIFS ACTIFS" />
+               <Label fx:id="activeGoalsLabel" styleClass="card-value" text="0" />
+            </VBox>
+            <VBox spacing="8.0" styleClass="card" HBox.hgrow="ALWAYS">
+               <Label styleClass="card-title" text="RÉUSSIS" />
+               <Label fx:id="achievedLabel" styleClass="card-value" text="0" />
+            </VBox>
+            <VBox spacing="8.0" styleClass="card" HBox.hgrow="ALWAYS">
+               <Label styleClass="card-title" text="PROCHAINE DATE" />
+               <Label fx:id="nextDeadlineLabel" styleClass="card-value" text="-" />
+            </VBox>
+         </children>
+      </HBox>
+
+      <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox spacing="15.0" styleClass="card" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label styleClass="card-title" text="✍️ AJOUTER UN OBJECTIF MANUEL" />
+                  <HBox spacing="10.0">
+                     <children>
+                        <TextField fx:id="manualGoalInput" promptText="Ex: Courir 5km" style="-fx-background-color: #2D2D2D; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                        <Button onAction="#addManualGoal" styleClass="primary-button" text="Ajouter" />
+                     </children>
+                  </HBox>
+                  <Separator style="-fx-opacity: 0.1;" />
+                  <Label styleClass="card-title" text="LISTE DE MES DÉFIS" />
+                  <ListView fx:id="goalsListView" prefHeight="200.0" style="-fx-background-color: #2D2D2D; -fx-control-inner-background: #2D2D2D;" />
+                  <Button maxWidth="Infinity" onAction="#removeSelectedGoal" style="-fx-background-color: #FF4B2B; -fx-text-fill: white;" text="🗑️ Supprimer l'objectif sélectionné" />
+               </children>
+            </VBox>
+            
+            <VBox prefWidth="350.0" spacing="15.0" styleClass="card">
+               <children>
+                  <Label styleClass="card-title" text="DÉTAILS &amp; CONFIGURATION" />
+                  
+                  <VBox spacing="5.0">
+                     <Label text="Durée de l'objectif" style="-fx-text-fill: white; -fx-font-size: 12px;" />
+                     <ChoiceBox fx:id="durationChoice" maxWidth="Infinity" style="-fx-background-color: #2D2D2D; -fx-text-fill: white;" />
+                  </VBox>
+
+                  <VBox spacing="5.0">
+                     <Label text="État de santé / Contexte" style="-fx-text-fill: white; -fx-font-size: 12px;" />
+                     <TextArea fx:id="healthTextArea" prefHeight="80.0" promptText="Ex: Rééducation genou, Asthme..." wrapText="true" style="-fx-control-inner-background: #2D2D2D; -fx-text-fill: white;" />
+                  </VBox>
+
+                  <Separator style="-fx-opacity: 0.2;" />
+
+                  <Label text="Objectif 1" style="-fx-text-fill: white;" />
+                  <ProgressBar fx:id="goal1Bar" maxWidth="Infinity" progress="0.0" />
+                  <Label text="Objectif 2" style="-fx-text-fill: white;" />
+                  <ProgressBar fx:id="goal2Bar" maxWidth="Infinity" progress="0.0" />
+                  <Label text="Objectif 3" style="-fx-text-fill: white;" />
+                  <ProgressBar fx:id="goal3Bar" maxWidth="Infinity" progress="0.0" />
+                  <Label text="Moyenne" style="-fx-text-fill: white;" />
+                  <Label fx:id="avgProgressLabel" styleClass="card-value" text="0%" />
+                  
+                  <Separator style="-fx-opacity: 0.2;" />
+                  
+                  <!-- Guide IMC -->
+                  <VBox spacing="10.0" style="-fx-background-color: #1A1A1A; -fx-padding: 15; -fx-background-radius: 10; -fx-border-color: #00A3FF; -fx-border-radius: 10;">
+                     <children>
+                        <Label style="-fx-text-fill: #00A3FF; -fx-font-weight: bold; -fx-font-size: 14px;" text="💡 GUIDE SELON VOTRE IMC" />
+                        <VBox spacing="5.0">
+                           <Label style="-fx-text-fill: white; -fx-font-size: 11px;" text="• IMC &lt; 18.5 : Visez la 'Prise de masse'." />
+                           <Label style="-fx-text-fill: white; -fx-font-size: 11px;" text="• IMC 18.5 - 25 : Visez le 'Maintien' ou 'Performance'." />
+                           <Label style="-fx-text-fill: white; -fx-font-size: 11px;" text="• IMC &gt; 25 : Visez la 'Perte de poids'." />
+                        </VBox>
+                        <Label style="-fx-text-fill: #A0A0A0; -fx-font-size: 10px; -fx-font-style: italic;" text="Source: OMS - Consultez un médecin pour un programme médicalisé." wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+</VBox>

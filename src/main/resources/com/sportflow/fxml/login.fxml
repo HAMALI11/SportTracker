@@ -44,7 +44,7 @@
             <HBox alignment="CENTER" spacing="5.0">
                <children>
                   <Label style="-fx-text-fill: #666666;" text="Pas encore de compte ?" />
-                  <Label style="-fx-text-fill: #00A3FF; -fx-cursor: hand;" text="S'inscrire" />
+                  <Label onMouseClicked="#handleRegister" style="-fx-text-fill: #00A3FF; -fx-cursor: hand;" text="S'inscrire" />
                </children>
             </HBox>
          </children>

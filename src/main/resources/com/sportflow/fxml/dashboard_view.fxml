@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+
+<ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sportflow.controller.DashboardController">
+    <content>
+        <VBox fx:id="dashboardBox" spacing="20.0" styleClass="dashboard-pane">
+            <children>
+                <!-- Header -->
+                <HBox alignment="CENTER_LEFT">
+                    <VBox>
+                        <Label fx:id="welcomeLabel" styleClass="header-title" text="Bonjour ! Bienvenue 👋" />
+                        <Label style="-fx-text-fill: #A0A0A0; -fx-font-size: 14px;" text="Voici vos recommandations d'entraînement basées sur votre profil." />
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS" />
+                </HBox>
+
+                <!-- Dynamic Activity Program Cards Row -->
+                <HBox spacing="20.0">
+                    <children>
+                        <VBox spacing="8.0" styleClass="card" HBox.hgrow="ALWAYS">
+                            <Label styleClass="card-title" text="🏋️ ENTRAÎNEMENT RECOMMANDÉ" />
+                            <Label fx:id="exerciseTypeLabel" style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" text="Analyse en cours..." wrapText="true" />
+                            <Label fx:id="exerciseDescLabel" styleClass="card-subtitle" text="Veuillez calculer votre IMC" wrapText="true" />
+                        </VBox>
+
+                        <VBox spacing="8.0" styleClass="card" HBox.hgrow="ALWAYS">
+                            <Label styleClass="card-title" text="⏱ DURÉE CONSEILLÉE" />
+                            <Label fx:id="recommendedTimeLabel" styleClass="card-value" text="-- min" />
+                            <Label fx:id="intensityLabel" styleClass="card-subtitle" text="Intensité cible" />
+                        </VBox>
+
+                        <VBox spacing="8.0" styleClass="card" HBox.hgrow="ALWAYS">
+                            <Label styleClass="card-title" text="🎯 OBJECTIF PRINCIPAL" />
+                            <Label fx:id="mainGoalLabel" styleClass="card-value" text="Analyse..." />
+                            <Label styleClass="card-subtitle" text="Priorité de santé" />
+                        </VBox>
+
+                        <!-- IMC Calculator -->
+                        <VBox spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS" prefWidth="280">
+                            <Label styleClass="card-title" text="⚖️  CALCULATEUR IMC" />
+                            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                <TextField fx:id="weightField" promptText="Poids (kg)" prefWidth="80" style="-fx-background-color: #2D2D2D; -fx-text-fill: white;" />
+                                <TextField fx:id="heightField" promptText="Taille (cm)" prefWidth="80" style="-fx-background-color: #2D2D2D; -fx-text-fill: white;" />
+                            </HBox>
+                            <Button text="Générer mon programme" onAction="#handleGenerateProgram" styleClass="primary-button" maxWidth="Infinity" />
+                            <Label fx:id="imcResultLabel" style="-fx-text-fill: #00FF94; -fx-font-weight: bold;" text="IMC: --" />
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Charts + Nutrition Row -->
+                <HBox spacing="20.0">
+                    <children>
+                        <!-- Weekly Projection -->
+                        <VBox spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                            <Label styleClass="card-title" text="📅 PROJECTION DE VOTRE TRANSFORMATION" />
+                            <LineChart fx:id="performanceChart" animated="true" legendVisible="true" verticalGridLinesVisible="false" prefHeight="250.0">
+                                <xAxis><CategoryAxis label="Semaine" /></xAxis>
+                                <yAxis><NumberAxis label="Progression %" /></yAxis>
+                            </LineChart>
+                        </VBox>
+
+                        <!-- Nutrition Adaptation -->
+                        <VBox prefWidth="330.0" spacing="12.0" styleClass="card">
+                            <children>
+                                <Label styleClass="card-title" text="🥗 ADAPTATION NUTRITIONNELLE" />
+                                
+                                <VBox spacing="4.0">
+                                    <Label style="-fx-text-fill: white; -fx-font-size: 13px;" text="Protéines" />
+                                    <ProgressBar fx:id="proteinBar" prefWidth="290.0" progress="0.0" style="-fx-accent: #00A3FF;" />
+                                    <Label fx:id="proteinGramsLabel" style="-fx-text-fill: #A0A0A0; -fx-font-size: 11px;" text="0g / 0g" />
+                                </VBox>
+                                
+                                <VBox spacing="4.0">
+                                    <Label style="-fx-text-fill: white; -fx-font-size: 13px;" text="Glucides" />
+                                    <ProgressBar fx:id="carbBar" prefWidth="290.0" progress="0.0" style="-fx-accent: #00FF94;" />
+                                    <Label fx:id="carbGramsLabel" style="-fx-text-fill: #A0A0A0; -fx-font-size: 11px;" text="0g / 0g" />
+                                </VBox>
+
+                                <VBox spacing="4.0">
+                                    <Label style="-fx-text-fill: white; -fx-font-size: 13px;" text="Lipides" />
+                                    <ProgressBar fx:id="lipidBar" prefWidth="290.0" progress="0.0" style="-fx-accent: #FFBD00;" />
+                                    <Label fx:id="lipidGramsLabel" style="-fx-text-fill: #A0A0A0; -fx-font-size: 11px;" text="0g / 0g" />
+                                </VBox>
+
+                                <Region VBox.vgrow="ALWAYS" />
+                                <Label fx:id="totalKcalLabel" style="-fx-text-fill: #00A3FF; -fx-font-weight: bold;" text="Total: -- / -- kcal" wrapText="true" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Expert Advice Section -->
+                <VBox spacing="10.0" styleClass="card" style="-fx-border-color: #00A3FF; -fx-border-width: 0 0 0 4;">
+                    <children>
+                        <Label style="-fx-text-fill: #00A3FF; -fx-font-size: 16px; -fx-font-weight: bold;" text="💎 CONSEILS D'EXPERT POUR UN CORPS IDÉAL" />
+                        <Label fx:id="expertAdviceLabel" style="-fx-text-fill: white; -fx-font-size: 14px; -fx-line-spacing: 5;" text="Veuillez générer votre programme pour recevoir vos conseils personnalisés." wrapText="true" />
+                    </children>
+                </VBox>
+
+            </children>
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+        </VBox>
+    </content>
+</ScrollPane>

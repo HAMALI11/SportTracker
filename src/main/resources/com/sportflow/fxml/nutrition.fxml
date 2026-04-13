@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox fx:id="rootPane" prefHeight="720.0" prefWidth="1000.0" spacing="20.0" styleClass="dashboard-pane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sportflow.controller.NutritionController">
+   <children>
+
+      <!-- Header -->
+      <HBox alignment="CENTER_LEFT">
+         <children>
+            <Button onAction="#handleBackToDashboard" style="-fx-background-color: transparent; -fx-text-fill: #A0A0A0; -fx-cursor: hand; -fx-font-size: 14px;" text="← Dashboard" />
+            <Region HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER_RIGHT">
+               <children>
+                  <Label styleClass="header-title" text="🥦 Programme Hebdomadaire" />
+                  <Label style="-fx-text-fill: #A0A0A0;" text="Votre plan nutritionnel complet sur 7 jours." />
+               </children>
+            </VBox>
+         </children>
+         <padding><Insets bottom="10.0" /></padding>
+      </HBox>
+
+      <!-- Recommendation and Day Selector -->
+      <HBox spacing="20.0" alignment="CENTER_LEFT" style="-fx-background-color: #1A1A1A; -fx-padding: 15; -fx-background-radius: 10;">
+         <children>
+            <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="recommendationLabel" style="-fx-text-fill: #00A3FF; -fx-font-size: 14px; -fx-font-weight: bold;" text="Analyse IMC en cours..." />
+               </children>
+            </VBox>
+            <VBox minWidth="200.0" spacing="5.0">
+               <children>
+                  <Label style="-fx-text-fill: white; -fx-font-size: 12px;" text="Choisir le jour :" />
+                  <ChoiceBox fx:id="dayChoice" maxWidth="Infinity" style="-fx-background-color: #2D2D2D; -fx-text-fill: white;" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+
+      <!-- Profile Override (Buttons) -->
+      <HBox spacing="15.0" alignment="CENTER">
+         <children>
+            <Button fx:id="btnMassGain" onAction="#showMassGain" prefWidth="250.0" styleClass="card" text="🚀 Prise de Masse" />
+            <Button fx:id="btnMaintain" onAction="#showMaintain" prefWidth="250.0" styleClass="card" text="⚖️ Maintien" />
+            <Button fx:id="btnWeightLoss" onAction="#showWeightLoss" prefWidth="250.0" styleClass="card" text="📉 Perte de Poids" />
+         </children>
+      </HBox>
+
+      <!-- Weekly Menu Display Area -->
+      <VBox spacing="20.0" VBox.vgrow="ALWAYS" styleClass="card">
+         <children>
+            <Label fx:id="menuTitleLabel" styleClass="card-title" text="📅 Planning du Jour" />
+            
+            <GridPane hgap="25.0" vgap="25.0" VBox.vgrow="ALWAYS">
+               <columnConstraints>
+                  <ColumnConstraints percentWidth="50" />
+                  <ColumnConstraints percentWidth="50" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints percentHeight="50" />
+                  <RowConstraints percentHeight="50" />
+               </rowConstraints>
+               <children>
+                  <!-- Breakfast -->
+                  <VBox spacing="10.0" style="-fx-background-color: #2D2D2D; -fx-padding: 20; -fx-background-radius: 10;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                     <children>
+                        <Label style="-fx-text-fill: #00A3FF; -fx-font-weight: bold; -fx-font-size: 16px;" text="☕ PETIT DÉJEUNER" />
+                        <Label fx:id="breakfastItems" style="-fx-text-fill: white; -fx-font-size: 14px;" text="..." wrapText="true" />
+                     </children>
+                  </VBox>
+
+                  <!-- Lunch -->
+                  <VBox spacing="10.0" style="-fx-background-color: #2D2D2D; -fx-padding: 20; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                     <children>
+                        <Label style="-fx-text-fill: #00FF94; -fx-font-weight: bold; -fx-font-size: 16px;" text="🍱 DÉJEUNER" />
+                        <Label fx:id="lunchItems" style="-fx-text-fill: white; -fx-font-size: 14px;" text="..." wrapText="true" />
+                     </children>
+                  </VBox>
+
+                  <!-- Dinner -->
+                  <VBox spacing="10.0" style="-fx-background-color: #2D2D2D; -fx-padding: 20; -fx-background-radius: 10;" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                     <children>
+                        <Label style="-fx-text-fill: #FFBD00; -fx-font-weight: bold; -fx-font-size: 16px;" text="🍽️ DÎNER" />
+                        <Label fx:id="dinnerItems" style="-fx-text-fill: white; -fx-font-size: 14px;" text="..." wrapText="true" />
+                     </children>
+                  </VBox>
+
+                  <!-- Snacks -->
+                  <VBox spacing="10.0" style="-fx-background-color: #2D2D2D; -fx-padding: 20; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Label style="-fx-text-fill: #FF4B2B; -fx-font-weight: bold; -fx-font-size: 16px;" text="🍎 COLLATION / SNACK" />
+                        <Label fx:id="snacksItems" style="-fx-text-fill: white; -fx-font-size: 14px;" text="..." wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+            
+            <HBox alignment="CENTER" style="-fx-padding: 10;">
+               <children>
+                  <Label style="-fx-text-fill: #A0A0A0; -fx-font-size: 11px;" text="💡 Ces menus sont générés intelligemment pour optimiser votre métabolisme selon les standards sportifs." />
+               </children>
+            </HBox>
+         </children>
+         <padding><Insets top="20" right="20" bottom="20" left="20" /></padding>
+      </VBox>
+
+   </children>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+</VBox>
